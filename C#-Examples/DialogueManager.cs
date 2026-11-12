@@ -1,13 +1,12 @@
-// this is a translation of my godot script into the C# and unity logic, it is only an example to show that I know how to handle this language too
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Portfolio.CSharpExamples
 {
+    // Translation of the Godot GDScript narrative engine to C# / Unity patterns.
     public class DialogueManager : MonoBehaviour
     {
-      ,
         public event Action OnDialogueFinished;
         public event Action<string> OnChoiceMade;
         public event Action<string> OnTextSubmitted;
@@ -16,7 +15,6 @@ namespace Portfolio.CSharpExamples
         private bool _isCutsceneActive = false;
         private bool _pendingFail = false;
 
-       
         [SerializeField] private GameObject dialogueUi;
         [SerializeField] private DialogueUI dialogueUiScript;
 
@@ -117,7 +115,6 @@ namespace Portfolio.CSharpExamples
             string[] parts = actionString.Split(':');
             if (parts[0] == "add_key")
             {
-                // Assuming GameState is a Singleton in Unity
                 GameState.Instance.AddKey(parts[1]);
             }
             else if (parts[0] == "trigger_fail")
@@ -128,7 +125,7 @@ namespace Portfolio.CSharpExamples
 
         private void ToggleInteractables(bool state)
         {
-            // GameObject.FindGameObjectsWithTag("Interactable")
+            // Placeholder for GameObject.FindGameObjectsWithTag("Interactable") logic
         }
     }
 }
