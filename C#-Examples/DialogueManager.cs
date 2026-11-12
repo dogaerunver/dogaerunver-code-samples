@@ -1,3 +1,4 @@
+// this is a translation of my godot script into the C# and unity logic, it is only an example to show that I know how to handle this language too
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace Portfolio.CSharpExamples
 {
     public class DialogueManager : MonoBehaviour
     {
-        // Unity uses delegates (Action/Func) instead of Godot Signals
+      ,
         public event Action OnDialogueFinished;
         public event Action<string> OnChoiceMade;
         public event Action<string> OnTextSubmitted;
@@ -15,13 +16,13 @@ namespace Portfolio.CSharpExamples
         private bool _isCutsceneActive = false;
         private bool _pendingFail = false;
 
-        // In Unity, you would link the UI via the Inspector
+       
         [SerializeField] private GameObject dialogueUi;
         [SerializeField] private DialogueUI dialogueUiScript;
 
         private void Awake()
         {
-            // Subscribe to UI events (Simulating Godot's .connect())
+            // Simulating Godot's .connect()
             if (dialogueUiScript != null)
             {
                 dialogueUiScript.DialogueFinished += HandleDialogueFinished;
@@ -64,7 +65,6 @@ namespace Portfolio.CSharpExamples
         {
             if (_currentNodeData.ContainsKey("dynamic_next"))
             {
-                // In C#, we use Func<> to store and execute a function from a Dictionary
                 var dynamicNextFunc = (Func<string>)_currentNodeData["dynamic_next"];
                 string nextNode = dynamicNextFunc.Invoke();
 
