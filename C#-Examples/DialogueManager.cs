@@ -128,8 +128,7 @@ namespace Portfolio.CSharpExamples
 
         private void ToggleInteractables(bool state)
         {
-            // Simulating Godot's groups via Unity Tags or a custom manager
-            // GameObject.FindGameObjectsWithTag("Interactable") ...
+            // GameObject.FindGameObjectsWithTag("Interactable")
         }
     }
 }
