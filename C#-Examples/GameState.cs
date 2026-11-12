@@ -15,7 +15,6 @@ namespace Portfolio.CSharpExamples
 
     public class GameState : MonoBehaviour
     {
-        // In Unity, the Application.persistentDataPath replaces Godot's user://
         private string SavePath => Path.Combine(Application.persistentDataPath, "save_data.json");
 
         public bool HasStarted { get; private set; }
@@ -32,7 +31,7 @@ namespace Portfolio.CSharpExamples
                 openedGates = OpenedGates
             };
 
-            // Unity's built-in JsonUtility is perfect for simple data
+            //This is simple data in this instance so I'm using Unity's built-in JsonUtility
             string json = JsonUtility.ToJson(data, true);
             File.WriteAllText(SavePath, json);
             Debug.Log("Game Saved to: " + SavePath);
