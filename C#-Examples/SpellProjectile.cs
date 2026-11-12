@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +6,6 @@ namespace Portfolio.CSharpExamples
 {
     public class SpellProjectile : MonoBehaviour
     {
-    //I made the script draw the spell structure here but this can be separated
         [Header("Spell Settings")]
         public int segmentCount = 3;
         public Vector2 segmentSize = new Vector2(48, 32);
@@ -14,17 +14,17 @@ namespace Portfolio.CSharpExamples
         public float segmentStepTime = 0.17f;
         public float startOffset = 40.0f;
         
-        [SerializeField] private GameObject _segmentPrefab; // Assign a prefab in Unity
+        [SerializeField] private GameObject _segmentPrefab; 
 
         private List<GameObject> _hitEnemies = new List<GameObject>();
 
         private void Start()
         {
-            // using Unity's StartCoroutine as equivalent to Godot's "await get_tree().create_timer()"
+            // Unity Coroutine is equivalent to Godot's "await get_tree().create_timer()"
             StartCoroutine(SpawnSegmentsRoutine());
         }
 
-        private System.Collections.IEnumerator SpawnSegmentsRoutine()
+        private IEnumerator SpawnSegmentsRoutine()
         {
             for (int i = 0; i < segmentCount; i++)
             {
@@ -41,11 +41,11 @@ namespace Portfolio.CSharpExamples
             Vector3 spawnPos = transform.position + (transform.right * (startOffset + index * segmentSpacing));
             GameObject segment = Instantiate(_segmentPrefab, spawnPos, transform.rotation);
             
-            // Setup size and collision here based on prefab
-            // StartCoroutine(DestroySegmentAfterTime(segment));
+            // Clean up the segment after its lifetime
+            Destroy(segment, segmentLifetime);
         }
 
-        //this here assumes the segment has a script with an OnTriggerEnter event
+        // Assumes the segment has a script with an OnTriggerEnter event
         public void OnSegmentHit(GameObject enemy, Vector2 segmentPosition)
         {
             if (_hitEnemies.Contains(enemy)) return;
