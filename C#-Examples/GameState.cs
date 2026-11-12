@@ -15,11 +15,24 @@ namespace Portfolio.CSharpExamples
 
     public class GameState : MonoBehaviour
     {
+        public static GameState Instance { get; private set; }
+
         private string SavePath => Path.Combine(Application.persistentDataPath, "save_data.json");
 
         public bool HasStarted { get; private set; }
         public Vector2 SpawnPosition { get; private set; }
         public string[] OpenedGates { get; private set; } = new string[0];
+
+        private void Awake()
+        {
+            if (Instance != null && Instance != this) Destroy(this);
+            else Instance = this;
+        }
+
+        public void AddKey(string key)
+        {
+            // Implementation for adding unlockable keys
+        }
 
         public void SaveGame()
         {
@@ -31,7 +44,6 @@ namespace Portfolio.CSharpExamples
                 openedGates = OpenedGates
             };
 
-            //This is simple data in this instance so I'm using Unity's built-in JsonUtility
             string json = JsonUtility.ToJson(data, true);
             File.WriteAllText(SavePath, json);
             Debug.Log("Game Saved to: " + SavePath);
