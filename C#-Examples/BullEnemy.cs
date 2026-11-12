@@ -23,15 +23,14 @@ namespace Portfolio.CSharpExamples
         private void Start()
         {
             _health = maxHealth;
-            
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null) _player = playerObj.transform;
         }
 
         private void Update()
         {
-            // In a real Unity project, I'd normally want to do movement in FixedUpdate
-            // but I am matching the Godot _physics_process(delta) logic here.
+            // Note: In a standard Unity project, I would use FixedUpdate for physics/movement.
+            // This is structured to match the Godot _physics_process(delta) logic.
             float delta = Time.deltaTime;
 
             switch (currentState)
@@ -100,14 +99,14 @@ namespace Portfolio.CSharpExamples
 
         private void TickHurt(float delta)
         {
-            //simulated knockback friction
+            // Simulated knockback friction
         }
 
         public void EnterState(State newState)
         {
             currentState = newState;
-            //here is where I would trigger Unity Animator states:
-            //GetComponent<Animator>().Play(newState.ToString());
+            // Placeholder for Unity Animator state triggers:
+            // GetComponent<Animator>().Play(newState.ToString());
         }
 
         public void TakeDamage(int amount, Vector2 fromDirection)
@@ -118,13 +117,13 @@ namespace Portfolio.CSharpExamples
             if (_health <= 0)
             {
                 EnterState(State.DEATH);
-                // Disable colliders 
+                // Disable colliders here if necessary
                 Destroy(gameObject, 1.0f);
                 return;
             }
 
             EnterState(State.HURT);
-            // Apply knockback 
+            // Apply knockback logic here
         }
     }
 }
