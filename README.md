@@ -7,7 +7,7 @@ While most of the code here is written in Godot's GDScript language (which is an
 
 
 I am very familiar with C# and know how to translate my knowledge into a C# environment.
-As proof, I have also adapted some of my Godot scripts into C# Unity scripts. You can find these code examples in the **C#-Examples** folder.
+As proof, I have also adapted some of my Godot scripts into C# Unity scripts. You can find these code examples in the ***C#-Examples*** folder.
 
 You can then compare them with their GDscript counterparts to see that I can easily adapt between engines. 
 
