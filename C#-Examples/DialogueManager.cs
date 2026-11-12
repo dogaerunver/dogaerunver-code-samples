@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+// This is a translation of the Godot GDScript narrative engine I have designed to C# / Unity patterns.
 
 namespace Portfolio.CSharpExamples
 {
-    // Translation of the Godot GDScript narrative engine to C# / Unity patterns.
     public class DialogueManager : MonoBehaviour
     {
         public event Action OnDialogueFinished;
